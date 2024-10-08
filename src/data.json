@@ -25,7 +25,7 @@
   },
   {
     "id": 3,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Audi_80_B1234.jpg/400px-Audi_80_B1234.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Audi80-1992.JPG/1200px-Audi80-1992.JPG",
     "title": "Audi 80",
     "startProduction": 1997,
     "class": "Compact executive car",
@@ -43,6 +43,7 @@
     "id": 5,
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/2015_Audi_A4_B9_3.0_TDI_quattro_V6_200_kW_S_line_Tangorot_Vorderansicht_%28cropped%29.jpg/400px-2015_Audi_A4_B9_3.0_TDI_quattro_V6_200_kW_S_line_Tangorot_Vorderansicht_%28cropped%29.jpg",
     "title": "Audi A4",
+    "startProduction": 1994,
     "class": "Compact executive car",
     "price": 35000
   },
@@ -58,6 +59,7 @@
     "id": 7,
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Audi_TT_Coup%C3%A9_2.0_TFSI_quattro_S-line_%288S%29_%E2%80%93_Frontansicht%2C_3._April_2015%2C_D%C3%BCsseldorf.jpg/400px-Audi_TT_Coup%C3%A9_2.0_TFSI_quattro_S-line_%288S%29_%E2%80%93_Frontansicht%2C_3._April_2015%2C_D%C3%BCsseldorf.jpg",
     "title": "Audi TT",
+    "startProduction": 1998,
     "class": "Sport compact Sports car",
     "price": 40000
   },
@@ -273,6 +275,7 @@
     "id": 34,
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Mercedes_R_350_CDI_4MATIC_Lang_%28V251%29_Facelift_front_20101017.jpg/400px-Mercedes_R_350_CDI_4MATIC_Lang_%28V251%29_Facelift_front_20101017.jpg",
     "title": "Mercedes-Benz R-Class",
+    "startProduction": 2005,
     "class": "Full-size CUV / Large MPV",
     "price": 35000
   },
@@ -304,6 +307,7 @@
     "id": 38,
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Oldsmobile-Intrigue.jpg/400px-Oldsmobile-Intrigue.jpg",
     "title": "Oldsmobile Intrigue",
+    "startProduction": 1997,
     "class": "Mid-size car",
     "price": 8000
   },
@@ -471,6 +475,7 @@
     "id": 59,
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Seat_Leon_1.4_TSI_Start%26Stop_Style_%28III%29_%E2%80%93_Frontansicht%2C_10._August_2013%2C_Ratingen.jpg/400px-Seat_Leon_1.4_TSI_Start%26Stop_Style_%28III%29_%E2%80%93_Frontansicht%2C_10._August_2013%2C_Ratingen.jpg",
     "title": "SEAT León",
+    "startProduction": 1998,
     "class": "Small family car",
     "price": 15000
   },
@@ -508,7 +513,7 @@
   },
   {
     "id": 64,
-    "image": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/VW_Corrado_-_standard.jpg/400px-VW_Corrado_-_standard.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Vw_corrado2.jpg",
     "title": "Volkswagen Corrado",
     "startProduction": 1988,
     "class": "Sport compact",
@@ -519,6 +524,7 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/VW_Kuebelwagen_1.jpg/400px-VW_Kuebelwagen_1.jpg",
     "title": "Volkswagen Kübelwagen",
     "class": "Military vehicle",
+    "startProduction": 1945,
     "price": 20000
   },
   {
@@ -539,7 +545,7 @@
   },
   {
     "id": 68,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Volvo_C30_RDesign_HRes.jpg/400px-Volvo_C30_RDesign_HRes.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/Volvo_C30_front_20071025.jpg",
     "title": "Volvo C30",
     "startProduction": 2006,
     "class": "Premium compact car",
