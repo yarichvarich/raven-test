@@ -1,16 +1,7 @@
-import { RouterProvider } from 'react-router-dom';
-import { createRouter } from './pages/Routing';
-import { Header } from './components/Header';
-
-const router = createRouter();
+import { Routing } from '@src/pages/Routing';
 
 const App = () => {
-  return (
-    <>
-      <Header />
-      <RouterProvider router={router} fallbackElement={<div>Initital loading...</div>} />
-    </>
-  );
+  return <Routing />;
 };
 
 export default App;

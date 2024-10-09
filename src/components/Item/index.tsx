@@ -1,4 +1,5 @@
 import { Box, Typography, Button, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { observer } from 'mobx-react-lite';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -6,12 +7,15 @@ import { ICar } from '@src/types';
 import { Image } from '@src/components';
 import React from 'react';
 import { formatToCurrency } from '@src/utils';
+import useStore from '@src/store/useStore';
 
 interface IItemProps {
   carInfo: ICar;
 }
 
-export const Item: React.FC<IItemProps> = ({ carInfo }) => {
+export const Item: React.FC<IItemProps> = observer(({ carInfo }) => {
+  const { addItemToCart } = useStore();
+
   return (
     <Box width="100%" sx={{ position: 'relative', minHeight: '411px' }}>
       <Box
@@ -34,11 +38,20 @@ export const Item: React.FC<IItemProps> = ({ carInfo }) => {
             '.MuiListItemText-primary': {
               whiteSpace: 'normal',
             },
+            '.item-title': {
+              whiteSpace: 'normal',
+            },
           },
         }}
       >
         <Image src={carInfo.image} style={{ borderRadius: '8px' }} />
-        <Typography variant="h6">{carInfo.title}</Typography>
+        <Typography
+          variant="h6"
+          sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+          className="item-title"
+        >
+          {carInfo.title}
+        </Typography>
         <List>
           <ListItem disablePadding>
             <ListItemIcon>
@@ -68,10 +81,10 @@ export const Item: React.FC<IItemProps> = ({ carInfo }) => {
             <ListItemText primary={formatToCurrency(carInfo.price, 'usd')} />
           </ListItem>
         </List>
-        <Button variant="outlined" sx={{ width: '100%' }}>
+        <Button variant="outlined" sx={{ width: '100%' }} onClick={() => addItemToCart(carInfo)}>
           Add to cart
         </Button>
       </Box>
     </Box>
   );
-};
+});

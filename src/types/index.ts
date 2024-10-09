@@ -6,3 +6,8 @@ export interface ICar {
   class: string;
   price: number;
 }
+
+export interface IOrderItem {
+  carInfo: ICar;
+  quantity: number;
+}

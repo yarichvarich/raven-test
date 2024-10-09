@@ -1,9 +1,11 @@
+import React from 'react';
+import { useNavigate } from 'react-router';
 import { AppBar, Typography, Box, Button } from '@mui/material';
 import StoreIcon from '@mui/icons-material/Store';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import React from 'react';
 
 export const Header: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <AppBar
       sx={{
@@ -22,7 +24,18 @@ export const Header: React.FC = () => {
           justifyContent: 'space-between',
         }}
       >
-        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 1,
+            cursor: 'pointer',
+          }}
+          onClick={() => {
+            navigate('/');
+          }}
+        >
           <StoreIcon />
           <Typography variant="h6">CAR SHOP</Typography>
         </Box>
@@ -37,6 +50,9 @@ export const Header: React.FC = () => {
             '&:hover': {
               boxShadow: 'none',
             },
+          }}
+          onClick={() => {
+            navigate('/cart');
           }}
         >
           <ShoppingCartIcon />
