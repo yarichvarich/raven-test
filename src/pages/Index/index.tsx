@@ -25,7 +25,7 @@ export const IndexPage: React.FC = () => {
 
   return (
     <>
-      <Grid2 container spacing={2} sx={{ py: 2, width: '100%' }}>
+      <Grid2 container spacing={2} sx={{ width: '100%', overflowY: 'scroll' }}>
         {displayedItems}
       </Grid2>
       <Pagination

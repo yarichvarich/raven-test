@@ -1,14 +1,19 @@
 import React from 'react';
-import { Outlet } from 'react-router';
-import { Box } from '@mui/material';
+import { Outlet, useLocation } from 'react-router';
+import { Box, Button, Modal } from '@mui/material';
 
-import { Header } from '@src/components/Header';
+import { Header, FormModal } from '@src/components';
+import { observer } from 'mobx-react-lite';
+import useStore from '@src/store/useStore';
 
 interface ILayoutProps {
   children?: React.ReactNode;
 }
 
-export const Layout: React.FC<ILayoutProps> = () => {
+export const Layout: React.FC<ILayoutProps> = observer(() => {
+  const { totalPrice, formModalOpened, setFormModalOpen } = useStore();
+  const location = useLocation();
+
   return (
     <>
       <Header />
@@ -18,10 +23,11 @@ export const Layout: React.FC<ILayoutProps> = () => {
           display: 'flex',
           justifyContent: 'center',
           width: '100%',
-          overflowX: 'hidden',
-          overflowY: 'scroll',
+          overflow: 'hidden',
           height: '100%',
-          padding: 6,
+          paddingTop: 6,
+          paddingBottom: 2,
+          position: 'relative',
         }}
       >
         <Box
@@ -33,12 +39,25 @@ export const Layout: React.FC<ILayoutProps> = () => {
             maxWidth: '900px',
             width: '100%',
             height: '100%',
-            // padding: 6,
+            overflow: 'hidden',
           }}
         >
           <Outlet />
         </Box>
+        {totalPrice !== 0 && location.pathname === '/cart' && !formModalOpened && (
+          <Button
+            variant="contained"
+            size="large"
+            sx={{ position: 'absolute', bottom: '5%', right: '5%', zIndex: '11' }}
+            onClick={() => setFormModalOpen(true)}
+          >
+            FILL ORDER!
+          </Button>
+        )}
       </Box>
+      <Modal open={formModalOpened} onClose={() => setFormModalOpen(false)}>
+        <FormModal />
+      </Modal>
     </>
   );
-};
+});

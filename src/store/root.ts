@@ -1,17 +1,17 @@
 import { createContext } from 'react';
-import { action, makeAutoObservable, observable } from 'mobx';
+import { makeAutoObservable, observable } from 'mobx';
 import { ICar, IOrderItem } from '@src/types';
 import { LocalStorage } from '@src/helpers';
 
 class RootStore {
-  @observable count: number = 1;
   @observable order: IOrderItem[] = LocalStorage.get<IOrderItem[]>('order') ?? [];
+  @observable formModalOpened: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  @action addItemToCart = (item: ICar) => {
+  addItemToCart = (item: ICar) => {
     const isInOrder = !!this.order.find(orderItem => orderItem.carInfo.id === item.id);
 
     if (isInOrder) {
@@ -27,7 +27,7 @@ class RootStore {
     LocalStorage.set('order', [...this.order]);
   };
 
-  @action removeItemFromCart = (item: ICar) => {
+  removeItemFromCart = (item: ICar) => {
     const itemQuantity = this.order.find(orderItem => orderItem.carInfo.id === item.id)?.quantity;
 
     if (itemQuantity) {
@@ -40,6 +40,32 @@ class RootStore {
         .filter(orderItem => orderItem.quantity !== 0);
     }
   };
+
+  changeCarQuantity = (id: number, newQuantity: number) => {
+    this.order = this.order
+      .map(order => {
+        if (order.carInfo.id === id) {
+          return { ...order, quantity: newQuantity };
+        }
+        return order;
+      })
+      .filter(order => order.quantity > 0);
+  };
+
+  setFormModalOpen = (value: boolean) => {
+    this.formModalOpened = value;
+  };
+
+  get overallQuantity(): number {
+    return this.order.reduce((accumulator, order) => accumulator + order.quantity, 0);
+  }
+
+  get totalPrice(): number {
+    return this.order.reduce(
+      (accumulator, order) => accumulator + order.quantity * order.carInfo.price,
+      0
+    );
+  }
 }
 
 const store = new RootStore();
