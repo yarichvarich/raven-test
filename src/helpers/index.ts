@@ -1,1 +1,1 @@
-export { LocalStorage } from './LocalStorage';
+export { LocalStorage } from '@src/helpers/LocalStorage';

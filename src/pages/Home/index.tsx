@@ -4,23 +4,28 @@ import { Grid2, Pagination } from '@mui/material';
 
 import { displayedItemsCount } from '@src/constants';
 import { Item } from '@src/components';
-import useStore from '@src/hooks/useStore';
+import { useStore, useCurrency } from '@src/hooks';
 import data from '@src/data.json';
 
 import { ItemGrid } from './styled';
 
-export const IndexPage: React.FC = observer(() => {
+export const HomePage: React.FC = observer(() => {
   const [page, setPage] = useState(1);
   const { addItemToCart } = useStore();
+  const { formatCurrency } = useCurrency();
 
   const itemRows = useMemo(
     () =>
       data.slice((page - 1) * displayedItemsCount, page * displayedItemsCount).map(val => (
         <Grid2 key={val.id} size={{ xl: 4, md: 6, sm: 6, xs: 12 }}>
-          <Item carInfo={val} addItemToCart={addItemToCart} />
+          <Item
+            carInfo={val}
+            displayedPrice={formatCurrency(val.price)}
+            addItemToCart={addItemToCart}
+          />
         </Grid2>
       )),
-    [page, addItemToCart]
+    [page, addItemToCart, formatCurrency]
   );
 
   const handlePageChanged = useCallback(

@@ -2,13 +2,15 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { Typography } from '@mui/material';
 
-import useStore from '@src/hooks/useStore';
+import { useCurrency, useStore } from '@src/hooks';
 import { OrderItem } from '@src/components/OrderItem';
 
 import { EmptyCartContainer, OrdersContainer } from './styled';
 
 export const CartPage: React.FC = observer(() => {
   const { order, changeCarQuantity } = useStore();
+  const { formatCurrency } = useCurrency();
+
   return (
     <>
       {order.length > 0 ? (
@@ -17,6 +19,7 @@ export const CartPage: React.FC = observer(() => {
             <OrderItem
               key={orderItem.carInfo.id}
               orderInfo={orderItem}
+              displayedPrice={formatCurrency(orderItem.carInfo.price)}
               changeCarQuantity={changeCarQuantity}
             />
           ))}

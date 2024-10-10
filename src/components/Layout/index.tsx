@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { Modal } from '@mui/material';
 
 import { Header, FormModal } from '@src/components';
-import useStore from '@src/hooks/useStore';
+import { useStore } from '@src/hooks';
 
 import { FillOrderButton, LayoutContainer, LayoutContainerWrapper } from './styled';
 

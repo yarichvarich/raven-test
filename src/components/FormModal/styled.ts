@@ -5,6 +5,7 @@ export const FormModalContainer = styled(Box)(() => ({
   backgroundColor: 'white',
   position: 'absolute',
   maxWidth: '600px',
+  //   maxHeight: '600px',
   width: '100%',
   borderRadius: '12px',
   borderColor: '#E5E7EB',
@@ -36,4 +37,10 @@ export const FormModalBottom = styled(Box)(() => ({
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
+}));
+
+export const JsonContainer = styled(Box)(() => ({
+  maxWidth: '600px',
+  height: '700px',
+  overflow: 'scroll',
 }));

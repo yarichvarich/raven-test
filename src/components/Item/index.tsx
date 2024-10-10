@@ -6,16 +6,16 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 import { ICar } from '@src/types';
 import { Image } from '@src/components';
-import { formatToCurrency } from '@src/utils';
 
 import { ItemButtom, CarClass, ItemContainer, ItemContent, ItemTitle } from './styled';
 
 interface IItemProps {
   carInfo: ICar;
+  displayedPrice: string | number;
   addItemToCart: (carInfo: ICar) => void;
 }
 
-export const Item: React.FC<IItemProps> = memo(({ carInfo, addItemToCart }) => {
+export const Item: React.FC<IItemProps> = memo(({ carInfo, displayedPrice, addItemToCart }) => {
   return (
     <ItemContainer>
       <ItemContent>
@@ -40,7 +40,7 @@ export const Item: React.FC<IItemProps> = memo(({ carInfo, addItemToCart }) => {
             <ListItemIcon>
               <LocalOfferIcon />
             </ListItemIcon>
-            <ListItemText primary={formatToCurrency(carInfo.price, 'usd')} />
+            <ListItemText primary={displayedPrice} />
           </ListItem>
         </List>
         <ItemButtom variant="outlined" onClick={() => addItemToCart(carInfo)}>

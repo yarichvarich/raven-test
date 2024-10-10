@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, styled } from '@mui/material';
+import { AppBar, Box, Button, Select, styled } from '@mui/material';
 
 export const HeaderContainer = styled(AppBar)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -38,5 +38,28 @@ export const CartLink = styled(Button)(({ theme }) => ({
   boxShadow: 'none',
   '&:hover': {
     boxShadow: 'none',
+  },
+}));
+
+export const CurrencySelect = styled(Select)(({ theme }) => ({
+  height: '36px',
+  color: 'white',
+  '.MuiSelect-icon': { color: 'white' },
+  transition: theme.transitions.create(['background-color', 'border-color'], {
+    duration: theme.transitions.duration.short,
+    easing: theme.transitions.easing.easeInOut,
+  }),
+  '&:hover': {
+    backgroundColor: theme.palette.primary.dark,
+  },
+  border: 'none',
+  '& .MuiOutlinedInput-notchedOutline': {
+    border: 'none',
+  },
+  '&.MuiInputBase-root:before': {
+    borderBottom: 'none',
+  },
+  '&.MuiInputBase-root:after': {
+    borderBottom: 'none',
   },
 }));

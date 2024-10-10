@@ -1,15 +1,38 @@
 import { createContext } from 'react';
 import { makeAutoObservable, observable } from 'mobx';
-import { ICar, IOrderItem } from '@src/types';
+import { ICar, ICurrency, IOrderItem } from '@src/types';
 import { LocalStorage } from '@src/helpers';
+import { supportedCurrencies } from '@src/constants';
 
 class RootStore {
   @observable order: IOrderItem[] = LocalStorage.get<IOrderItem[]>('order') ?? [];
   @observable formModalOpened: boolean = false;
 
+  @observable userName: string = '';
+  @observable userAddress: string = '';
+  @observable userEmail: string = '';
+
+  @observable currentCurrency: ICurrency = supportedCurrencies[1];
+
   constructor() {
     makeAutoObservable(this);
   }
+
+  setCurrentCurrency = (currency: ICurrency) => {
+    this.currentCurrency = currency;
+  };
+
+  setUserName = (name: string) => {
+    this.userName = name;
+  };
+
+  setUserAddress = (address: string) => {
+    this.userAddress = address;
+  };
+
+  setUserEmail = (email: string) => {
+    this.userEmail = email;
+  };
 
   addItemToCart = (item: ICar) => {
     const isInOrder = !!this.order.find(orderItem => orderItem.carInfo.id === item.id);
