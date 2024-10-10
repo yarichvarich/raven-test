@@ -3,9 +3,14 @@ const storage = window.localStorage;
 class LocalStorage {
   static get<T>(key: string) {
     const storedItem = storage.getItem(key);
-    if (storedItem) {
-      const value = JSON.parse(storedItem);
-      return value as T;
+    try {
+      if (storedItem) {
+        const value = JSON.parse(storedItem);
+        return value as T;
+      }
+    } catch (error) {
+      console.log(error);
+      return undefined;
     }
     return undefined;
   }

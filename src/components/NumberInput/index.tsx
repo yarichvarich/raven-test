@@ -1,5 +1,7 @@
-import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
+import { Box, Typography } from '@mui/material';
+
+import { NumberInputButton, NumberInputContainer } from './styled';
 
 interface INumberInputProps {
   min: number;
@@ -10,28 +12,26 @@ interface INumberInputProps {
 
 export const NumberInput: React.FC<INumberInputProps> = ({ min, max, value, handleChange }) => {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'row', columnGap: 1 }}>
-      <Button
+    <NumberInputContainer>
+      <NumberInputButton
         size="small"
         variant="outlined"
-        sx={{ minWidth: 0, width: 24, height: 24, borderRadius: '20px' }}
         disabled={value <= min}
         onClick={() => handleChange(value - 1)}
       >
         -
-      </Button>
+      </NumberInputButton>
       <Box>
         <Typography>{value}</Typography>
       </Box>
-      <Button
+      <NumberInputButton
         size="small"
         variant="outlined"
-        sx={{ minWidth: 0, width: 24, height: 24, borderRadius: '20px' }}
         disabled={value >= max}
         onClick={() => handleChange(value + 1)}
       >
         +
-      </Button>
-    </Box>
+      </NumberInputButton>
+    </NumberInputContainer>
   );
 };

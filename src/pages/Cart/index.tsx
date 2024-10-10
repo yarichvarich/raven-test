@@ -1,35 +1,30 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
-import useStore from '@src/store/useStore';
+import useStore from '@src/hooks/useStore';
 import { OrderItem } from '@src/components/OrderItem';
 
+import { EmptyCartContainer, OrdersContainer } from './styled';
+
 export const CartPage: React.FC = observer(() => {
-  const { order } = useStore();
+  const { order, changeCarQuantity } = useStore();
   return (
     <>
       {order.length > 0 ? (
-        <Box
-          sx={{
-            width: '100%',
-            height: '100%',
-            gap: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            overflowY: 'scroll',
-          }}
-        >
+        <OrdersContainer>
           {order.map(orderItem => (
-            <OrderItem key={orderItem.carInfo.id} orderInfo={orderItem} />
+            <OrderItem
+              key={orderItem.carInfo.id}
+              orderInfo={orderItem}
+              changeCarQuantity={changeCarQuantity}
+            />
           ))}
-        </Box>
+        </OrdersContainer>
       ) : (
-        <Box
-          sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}
-        >
+        <EmptyCartContainer>
           <Typography variant="h6">Cart is currently empty</Typography>
-        </Box>
+        </EmptyCartContainer>
       )}
     </>
   );

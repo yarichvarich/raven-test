@@ -1,21 +1,26 @@
-import { Item } from '@src/components';
 import React, { useCallback, useMemo, useState } from 'react';
+import { observer } from 'mobx-react-lite';
 import { Grid2, Pagination } from '@mui/material';
 
+import { displayedItemsCount } from '@src/constants';
+import { Item } from '@src/components';
+import useStore from '@src/hooks/useStore';
 import data from '@src/data.json';
 
-export const IndexPage: React.FC = () => {
-  const [page, setPage] = useState(1);
-  const displayedItemsCount = 18;
+import { ItemGrid } from './styled';
 
-  const displayedItems = useMemo(
+export const IndexPage: React.FC = observer(() => {
+  const [page, setPage] = useState(1);
+  const { addItemToCart } = useStore();
+
+  const itemRows = useMemo(
     () =>
       data.slice((page - 1) * displayedItemsCount, page * displayedItemsCount).map(val => (
         <Grid2 key={val.id} size={{ xl: 4, md: 6, sm: 6, xs: 12 }}>
-          <Item carInfo={val} />
+          <Item carInfo={val} addItemToCart={addItemToCart} />
         </Grid2>
       )),
-    [page]
+    [page, addItemToCart]
   );
 
   const handlePageChanged = useCallback(
@@ -25,9 +30,9 @@ export const IndexPage: React.FC = () => {
 
   return (
     <>
-      <Grid2 container spacing={2} sx={{ width: '100%', overflowY: 'scroll' }}>
-        {displayedItems}
-      </Grid2>
+      <ItemGrid container spacing={2}>
+        {itemRows}
+      </ItemGrid>
       <Pagination
         variant="outlined"
         count={Math.ceil(data.length / displayedItemsCount)}
@@ -36,4 +41,4 @@ export const IndexPage: React.FC = () => {
       />
     </>
   );
-};
+});
